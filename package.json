@@ -1,0 +1,25 @@
+{
+  "name": "robo-advisor-chatbot",
+  "version": "1.0.0",
+  "description": "A full-stack app democratizing asset allocation using SSA Actuarial data",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "seed": "node scripts/seedSSAData.js"
+  },
+  "authors": [
+    "Jeffrey Potvin",
+    "Krishana Thapa",
+    "Alexey Akopov"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
