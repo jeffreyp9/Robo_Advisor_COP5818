@@ -1,0 +1,342 @@
+<!--
+Jeffrey Potvin, Krishana Thapa, Alexey Akopov
+Final Project
+COP 5818
+PIDs: 5066496, 5663249, 5013953
+-->
+
+<!DOCTYPE html>
+<!-- declaring html5 document type -->
+<html lang="en">
+<head>
+    <!-- HTML Head: https://www.w3schools.com/html/html_head.asp -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- page title -->
+    <title>Robo Advisor Chatbot Group 20</title>
+    <!-- HTML CSS: https://www.w3schools.com/html/html_css.asp -->
+    <!-- linking css-->
+    <link rel="stylesheet" href="style.css">
+    <!-- https://www.chartjs.org/docs/latest/ -->
+    <!-- importing chart.js library to create the pie charts for portfolio allocation -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<!-- main body section where all the visible content goes -->
+<body>
+    <!-- HTML Div: https://www.w3schools.com/html/html_blocks.asp -->
+    <!-- main container that wraps everything and centers the content -->
+    <div class="container">
+        <!-- HTML Semantic Elements: https://www.w3schools.com/html/html5_semantic_elements.asp -->
+        <!-- header section with the main title and author info -->
+        <header>
+            <!-- HTML Headings: https://www.w3schools.com/html/html_headings.asp -->
+            <!-- main page heading - biggest and most important text -->
+            <h1>Robo-Advisor Portfolio Calculator</h1>
+            <!-- HTML Paragraphs: https://www.w3schools.com/html/html_paragraphs.asp -->
+            <!-- subtitle explaining what this tool does -->
+            <p class="subtitle">Investment Portfolio Recommendations</p>
+            <p class="authors">By: Jeffrey Potvin, Krishana Thapa, Alexey Akopov (Group 20)</p>
+        </header>
+
+        <!-- HTML Semantic Elements: https://www.w3schools.com/html/html5_semantic_elements.asp -->
+        <!-- main content area where the form and results will be displayed -->
+        <main>
+            <!-- section containing the input form -->
+            <div class="form-section">
+                <!-- secondary heading for the form section -->
+                <h2>Financial Profile Assessment</h2>
+                <!-- HTML Forms: https://www.w3schools.com/html/html_forms.asp -->
+                <!-- main form where users input their financial information -->
+                <form id="advisorForm">
+                    <!-- HTML Fieldset: https://www.w3schools.com/html/html_form_elements.asp -->
+                    <!-- grouping personal info fields together with a border -->
+                    <fieldset>
+                        <!-- HTML Legend: https://www.w3schools.com/html/html_form_elements.asp -->
+                        <!-- added title for the group of fields -->
+                        <legend>Personal Information</legend>
+                        
+                        <!-- container for the email field -->
+                        <div class="form-group">
+                            <!-- HTML Labels: https://www.w3schools.com/html/html_forms.asp -->
+                            <!-- label that describes the email input field -->
+                            <label for="email">Email Address *</label>
+                            <!-- flexbox for the email input and load button -->
+                            <div class="email-row">
+                                <!-- HTML Input Types: https://www.w3schools.com/html/html_form_input_types.asp -->
+                                <!-- email input field that validates email format -->
+                                <input type="email" id="email" name="email" required>
+                                <!-- HTML Buttons: https://www.w3schools.com/html/html_forms.asp -->
+                                <!-- button to load previously saved user profiles -->
+                                <button type="button" id="loadProfileBtn">Load Previous Profile</button>
+                            </div>
+                        </div>
+                        <!-- create a form row for age and retirement age -->
+                        <!-- putting age fields in a row so they display side by side -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <!-- label for current age field -->
+                                <label for="age">Current Age *</label>
+                                <!-- number input for age with min/max validation to ensure it feeds into the api correctly -->
+                                <input type="number" id="age" name="age" min="20" max="80" required>
+                            </div>
+                            <!-- retirement age input group -->
+                            <div class="form-group">
+                                <!-- label for retirement age field -->
+                                <label for="retirementAge">Desired Retirement Age *</label>
+                                <!-- number input for retirement age with validation -->
+                                <input type="number" id="retirementAge" name="retirementAge" min="50" max="80" required>
+                            </div>
+                        </div>
+                        <!-- create a form group for gender -->
+                        <!-- gender selection group -->
+                        <div class="form-group">
+                            <!-- label for gender dropdown -->
+                            <label for="gender">Gender *</label>
+                            <!-- dropdown menu for gender selection -->
+                            <select id="gender" name="gender" required>
+                                <!-- default empty option -->
+                                <option value="">Select Gender</option>
+                                <!-- male option for life expectancy calculations -->
+                                <option value="male">Male</option>
+                                <!-- female option for life expectancy calculations -->
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <!-- create a legend for Financial Information -->
+                    <fieldset>
+                        <!-- title for financial information section -->
+                        <legend>Financial Information</legend>
+                        
+                        <!-- income input group -->
+                        <div class="form-group">
+                            <!-- label for annual income field -->
+                            <label for="income">Annual Income ($) *</label>
+                            <!-- number input for income with step of 1000 for easier entry -->
+                            <input type="number" id="income" name="income" min="0" step="1000" required>
+                        </div>
+                    </fieldset>
+
+                    <!-- create a legend for Family Information -->
+                    <fieldset>
+                        <!-- title for family information section -->
+                        <legend>Family Information</legend>
+                        
+                        <!-- row containing marital status and children fields -->
+                        <div class="form-row">
+                            <!-- marital status selection group -->
+                            <div class="form-group">
+                                <!-- label for marital status dropdown -->
+                                <label for="maritalStatus">Marital Status *</label>
+                                <!-- dropdown for marital status selection -->
+                                <select id="maritalStatus" name="maritalStatus" required>
+                                    <!-- default empty option -->
+                                    <option value="">Select Status</option>
+                                    <!-- single person option -->
+                                    <option value="single">Single</option>
+                                    <!-- married option - shows spouse income field -->
+                                    <option value="married">Married</option>
+                                    <!-- divorced option -->
+                                    <option value="divorced">Divorced</option>
+                                    <!-- widowed option -->
+                                    <option value="widowed">Widowed</option>
+                                </select>
+                            </div>
+                            <!-- number of children group -->
+                            <div class="form-group">
+                                <!-- label for children count -->
+                                <label for="kids">Number of Children</label>
+                                <!-- number input for children with reasonable max limit -->
+                                <input type="number" id="kids" name="kids" min="0" max="20" value="0">
+                            </div>
+                        </div>
+
+                        <!-- spouse income field that only shows when married is selected -->
+                        <div class="form-group" id="spouseIncomeGroup" style="display: none;">
+                            <!-- label for spouse income field -->
+                            <label for="spouseIncome">Spouse Annual Income ($)</label>
+                            <!-- number input for spouse incom hidden by default for if they are not married -->
+                            <input type="number" id="spouseIncome" name="spouseIncome" min="0" step="1000" value="0">
+                        </div>
+                    </fieldset>
+
+                    <!-- create a legend for Asset Information -->
+                    <fieldset>
+                        <!-- title for asset and debt section -->
+                        <legend>Asset & Debt Information</legend>
+                        
+                        <!-- row containing the two checkbox options -->
+                        <div class="form-row">
+                            <!-- homeowner checkbox group -->
+                            <div class="form-group checkbox-group">
+                                <!-- label wrapping checkbox for home ownership -->
+                                <label>
+                                    <!-- checkbox for homeowner status -->
+                                    <input type="checkbox" id="homeowner" name="homeowner">
+                                    I own my home
+                                </label>
+                            </div>
+                            <!-- debt checkbox group -->
+                            <div class="form-group checkbox-group">
+                                <!-- label wrapping checkbox for debt status -->
+                                <label>
+                                    <!-- checkbox for significant debt indicator -->
+                                    <input type="checkbox" id="significantDebt" name="significantDebt">
+                                    I have significant debt
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- main submit button to process the form -->
+                    <button type="submit" class="submit-btn">Generate Portfolio Recommendation</button>
+                </form>
+            </div>
+
+            <!-- results section that appears after form submission -->
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <h2>Portfolio Recommendation</h2>
+                
+                <!-- summary cards showing key calculated values -->
+                <div class="results-summary">
+                    <!-- card showing the users desired retirement age -->
+                    <div class="summary-card">
+                        <!-- title for retirement age card -->
+                        <h3>Retirement Age</h3>
+                        <!-- dynamic value that gets filled by javascript -->
+                        <p class="summary-value" id="retirementAgeDisplay">--</p>
+                        <!-- label explaining the units after the number -->
+                        <p class="summary-label">years old</p>
+                    </div>
+                    <!-- card showing how many years until retirement -->
+                    <div class="summary-card">
+                        <!-- title for investment horizon card -->
+                        <h3>Investment Horizon</h3>
+                        <!-- calculated years until retirement -->
+                        <p class="summary-value" id="investmentHorizon">--</p>
+                        <!-- label explaining what this number means -->
+                        <p class="summary-label">years until retirement</p>
+                    </div>
+                    <!-- card showing the calculated risk level -->
+                    <div class="summary-card">
+                        <!-- title for risk level card -->
+                        <h3>Risk Level</h3>
+                        <!-- risk level like aggressive, moderate, conservative -->
+                        <p class="summary-value" id="riskLevel">--</p>
+                    </div>
+                    <!-- card showing life expectancy from ssa data -->
+                    <div class="summary-card">
+                        <!-- title for life expectancy card -->
+                        <h3>Life Expectancy</h3>
+                        <!-- calculated life expectancy in years -->
+                        <p class="summary-value" id="lifeExpectancyDisplay">--</p>
+                        <!-- label showing units -->
+                        <p class="summary-label">years</p>
+                    </div>
+                </div>
+                
+                <!-- create a legend for Portfolio Allocation Chart -->
+                <!-- container for the pie chart visualization -->
+                <div class="chart-container">
+                    <!-- canvas element where chart.js will draw the pie chart -->
+                    <canvas id="resultsChart"></canvas>
+                </div>
+
+                <!-- detailed allocation breakdown below the chart -->
+                <div class="allocation-details">
+                    <!-- equity allocation display -->
+                    <div class="allocation-item equity">
+                        <!-- label for equity portion -->
+                        <span class="allocation-label">Equity (SPY/VOO)</span>
+                        <!-- percentage value filled by javascript -->
+                        <span class="allocation-percentage" id="equityPercentage">--</span>
+                    </div>
+                    <!-- bonds allocation display -->
+                    <div class="allocation-item bonds">
+                        <!-- label for fixed income portion -->
+                        <span class="allocation-label">Fixed Income (BND/AGG)</span>
+                        <!-- percentage value filled by javascript -->
+                        <span class="allocation-percentage" id="bondsPercentage">--</span>
+                    </div>
+                </div>
+
+                <!-- section showing specific fund recommendations -->
+                <div class="fund-recommendations">
+                    <!-- heading for fund recommendations -->
+                    <h3>Recommended Index Funds</h3>
+                    <!-- container for the recommendation cards -->
+                    <div class="recommendation-cards">
+                        <!-- card for equity fund options -->
+                        <div class="recommendation-card equity-card">
+                            <!-- subheading for equity funds -->
+                            <h4>Equity Allocation</h4>
+                            <!-- container for equity fund options -->
+                            <div class="fund-options">
+                                <!-- first equity fund option -->
+                                <div class="fund-option">
+                                    <!-- fund ticker and name -->
+                                    <strong>SPY</strong> - SPDR S&P 500 ETF Trust
+                                    <p>Tracks the S&P 500 index with low fees</p>
+                                </div>
+                                <!-- second equity fund option -->
+                                <div class="fund-option">
+                                    <!-- fund ticker and name -->
+                                    <strong>VOO</strong> - Vanguard S&P 500 ETF
+                                    <p>Ultra-low cost S&P 500 tracking</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card for bond fund options -->
+                        <div class="recommendation-card bonds-card">
+                            <!-- subheading for bond funds -->
+                            <h4>Fixed Income Allocation</h4>
+                            <!-- container for bond fund options -->
+                            <div class="fund-options">
+                                <!-- first bond fund option -->
+                                <div class="fund-option">
+                                    <!-- fund ticker and name -->
+                                    <strong>BND</strong> - Vanguard Total Bond Market ETF
+                                    <!-- description of bond market exposure -->
+                                    <p>Broad exposure to U.S. investment-grade bonds</p>
+                                </div>
+                                <!-- second bond fund option -->
+                                <div class="fund-option">
+                                    <!-- fund ticker and name -->
+                                    <strong>AGG</strong> - iShares Core U.S. Aggregate Bond ETF
+                                    <!-- description of what index it tracks -->
+                                    <p>Tracks Bloomberg U.S. Aggregate Bond Index</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- loading message that appears while calculating and the api is working-->
+            <div class="loading" id="loading" style="display: none;">
+                <!-- message shown during processing -->
+                <p>Calculating your personalized portfolio...</p>
+            </div>
+
+            <!-- error message container for displaying any errors -->
+            <div class="error-message" id="errorMessage" style="display: none;"></div>
+        </main>
+        <!-- add the references for display in the footer of the acturial table and also the FINRA source -->
+        <footer>
+            <!-- heading for references section -->
+            <h3>References</h3>
+            <!-- list of data sources used -->
+            <ul>
+                <!-- link to ssa actuarial life tables data source -->
+                <li><a href="https://www.ssa.gov/oact/STATS/table4c6.html" target="_blank">SSA Actuarial Life Tables</a></li>
+                <!-- link to finra retirement planning resource -->
+                <li><a href="https://www.finra.org/investors/learn-to-invest/types-investments/retirement/managing-retirement-income/sources-retirement-income" target="_blank">FINRA - Managing Retirement Income</a></li>
+            </ul>
+        </footer>
+    </div>
+
+    <!-- linking the javascript file that handles all the interactive functionality -->
+    <script src="client.js"></script>
+</body>
+</html>

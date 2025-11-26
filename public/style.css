@@ -1,0 +1,297 @@
+/*
+Jeffrey Potvin, Krishana Thapa, Alexey Akopov
+Final Project
+COP 5818
+PIDs: 5066496, 5663249, 5013953
+*/
+
+
+/* CSS Box Model: https://www.w3schools.com/css/css_boxmodel.asp */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Font: https://www.w3schools.com/css/css_font.asp */
+/* CSS Colors: https://www.w3schools.com/css/css_colors.asp */
+/* CSS Padding: https://www.w3schools.com/css/css_padding.asp */
+body {
+    font-family: Arial, sans-serif;
+    color: black;
+    background-color: lightgray;
+    padding: 20px;
+}
+
+/* CSS Width and Height: https://www.w3schools.com/css/css_dimension.asp */
+/* CSS Margin: https://www.w3schools.com/css/css_margin.asp */
+/* CSS Border: https://www.w3schools.com/css/css_border.asp */
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: white;
+    border: 1px solid gray;
+    padding: 30px;
+}
+
+/* CSS Text: https://www.w3schools.com/css/css_text.asp */
+header {
+    text-align: center;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+/* CSS Font: https://www.w3schools.com/css/css_font.asp */
+header h1 {
+    font-size: 28px;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+.authors {
+    font-size: 14px;
+    color: gray;
+}
+
+.form-container {
+    margin-bottom: 30px;
+}
+
+/* CSS Border: https://www.w3schools.com/css/css_border.asp */
+fieldset {
+    border: 1px solid lightgray;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* CSS Font: https://www.w3schools.com/css/css_font.asp */
+legend {
+    font-weight: bold;
+    padding: 0 10px;
+    color: black;
+}
+
+.form-row {
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.email-row {
+    display: flex;
+    gap: 10px;
+}
+
+.email-row input {
+    flex: 1;
+}
+
+.email-row button {
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.email-row button:hover {
+    background-color: black;
+}
+
+/* CSS Display: https://www.w3schools.com/css/css_display_visibility.asp */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+}
+
+/* CSS Width and Height: https://www.w3schools.com/css/css_dimension.asp */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid gray;
+    font-size: 14px;
+}
+
+/* CSS Pseudo-classes: https://www.w3schools.com/css/css_pseudo_classes.asp */
+.form-group input:focus,
+.form-group select:focus {
+    border-color: black;
+    outline: none;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+}
+
+.button-group {
+    text-align: center;
+    margin: 30px 0;
+}
+
+/* CSS Buttons: https://www.w3schools.com/css/css3_buttons.asp */
+button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+/* CSS Pseudo-classes: https://www.w3schools.com/css/css_pseudo_classes.asp */
+button:hover {
+    background-color: gray;
+}
+
+button:disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+}
+
+/* CSS Display: https://www.w3schools.com/css/css_display_visibility.asp */
+.results-section {
+    display: none;
+    margin-top: 40px;
+    padding-top: 30px;
+}
+
+.results-section h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: black;
+}
+
+.results-summary {
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    border: 1px solid gray;
+    padding: 20px;
+    text-align: center;
+    background-color: lightgray;
+    margin-bottom: 20px;
+}
+
+/* CSS Text Transform: https://www.w3schools.com/css/css_text.asp */
+.summary-card h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.summary-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.summary-label {
+    font-size: 12px;
+    color: gray;
+}
+
+.chart-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* CSS Width and Height: https://www.w3schools.com/css/css_dimension.asp */
+.chart-container canvas {
+    max-width: 500px;
+    height: 500px;
+}
+
+.allocation-section h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.allocation-details {
+    margin-bottom: 20px;
+}
+
+.allocation-item {
+    border: 1px solid gray;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.allocation-item h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.allocation-percentage {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.fund-recommendations {
+    font-size: 14px;
+    color: gray;
+}
+
+.error-message {
+    background-color: pink;
+    color: red;
+    padding: 10px;
+    border: 1px solid red;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.loading-spinner {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+/* CSS Animations: https://www.w3schools.com/css/css3_animations.asp */
+.spinner {
+    border: 3px solid lightgray;
+    border-top: 3px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+/* CSS @keyframes Rule: https://www.w3schools.com/css/css3_animations.asp */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* CSS Media Queries: https://www.w3schools.com/css/css3_mediaqueries.asp */
+@media (max-width: 600px) {
+    .results-summary {
+        display: block;
+    }
+    
+    .allocation-details {
+        display: block;
+    }
+}
