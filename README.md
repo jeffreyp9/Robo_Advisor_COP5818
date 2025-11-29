@@ -69,3 +69,6 @@ The engine determines the Equity (Stocks) / Fixed Income (Bonds) split based on:
 **Jeffrey Potvin** (PID: 5066496)
 **Krishana Thapa** (PID: 5663249)
 **Alexey Akopov** (PID: 5013953)
+
+## Github Repository
+https://github.com/jeffreyp9/Robo_Advisor_COP5818
