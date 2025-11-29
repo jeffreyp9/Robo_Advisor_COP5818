@@ -8,7 +8,7 @@ This full-stack web application serves as a "Robo-Advisor" to democratize person
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/jeffreyp9/Robo_Advisor_COP5818
     cd Robo_Advisor
     ```
 
